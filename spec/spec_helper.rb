@@ -15,7 +15,8 @@
 # The `.rspec` file also contains a few flags that are not defaults but that
 # users commonly want.
 #
-# See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
+# See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configurationclear
+
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
@@ -42,7 +43,7 @@ RSpec.configure do |config|
 
 # The settings below are suggested to provide a good initial experience
 # with RSpec, but feel free to customize to your heart's content.
-=begin
+#=begin
   # These two settings work together to allow you to limit a spec run
   # to individual examples or groups you care about by tagging them with
   # `:focus` metadata. When nothing is tagged with `:focus`, all examples
@@ -55,7 +56,7 @@ RSpec.configure do |config|
   #   - http://myronmars.to/n/dev-blog/2012/06/rspecs-new-expectation-syntax
   #   - http://teaisaweso.me/blog/2013/05/27/rspecs-new-message-expectation-syntax/
   #   - http://myronmars.to/n/dev-blog/2014/05/notable-changes-in-rspec-3#new__config_option_to_disable_rspeccore_monkey_patching
-  config.disable_monkey_patching!
+  #config.disable_monkey_patching!
 
   # Many RSpec users commonly either run the entire suite or an individual
   # file, and it's useful to allow more verbose output when running an
@@ -83,5 +84,6 @@ RSpec.configure do |config|
   # test failures related to randomization by passing the same `--seed` value
   # as the one that triggered the failure.
   Kernel.srand config.seed
-=end
+
+#=end
 end
