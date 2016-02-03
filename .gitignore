@@ -37,3 +37,5 @@ bower.json
 instructions.txt
 
 .idea/*
+
+database.yml
