@@ -39,3 +39,4 @@ instructions.txt
 .idea/*
 
 .env
+database.yml
