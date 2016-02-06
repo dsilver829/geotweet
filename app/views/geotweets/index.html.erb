@@ -14,7 +14,7 @@
     </div>
     <div class="col-xs-12 col-md-6">
       <img src="https://maps.googleapis.com/maps/api/staticmap?size=600x300&maptype=roadmap
-&<%= markers(@geotweets).join('&') %>&key=<%= ENV['GOOGLE_MAPS_API_KEY'] %>">
+&<%= markers(@geotweets).join('&') %>">
       <div>Your location is <%= @location.address %>.</div>
     </div>
   </div>
