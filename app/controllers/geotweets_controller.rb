@@ -1,7 +1,7 @@
 class GeotweetsController < ApplicationController
   def index
     @location = request.location
-    @corners = [@location.longitude-0.5,@location.latitude-0.5,@location.longitude+0.5,@location.latitude+0.5]
+    @corners = [@location.longitude-0.1,@location.latitude-0.1,@location.longitude+0.1,@location.latitude+0.1]
     @geotweets = []
     TweetStream::Client.new.locations(@corners.join(",")) do |geotweet, client|
       puts geotweet.text
