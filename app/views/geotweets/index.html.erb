@@ -4,7 +4,7 @@
       <a href="<%= root_url %>"><span class="glyphicon glyphicon-map-marker header" aria-hidden="true"></span><h1 class="accent">Geotweet</h1></a>
     </div>
   </div>
-  <div class="row">
+  <div class="row main">
     <div class="col-xs-12 col-md-6">
       <ul>
         <% @geotweets.each do |geotweet| %>
@@ -13,7 +13,11 @@
       </ul>
     </div>
     <div class="col-xs-12 col-md-6">
-      Your location is <%= @location %>.
+      <img src="https://maps.googleapis.com/maps/api/staticmap?center=<%= @location %>&zoom=13&size=600x300&maptype=roadmap
+&markers=color:blue%7Clabel:S%7C40.702147,-74.015794&markers=color:green%7Clabel:G%7C40.711614,-74.012318
+&markers=color:red%7Clabel:C%7C40.718217,-73.998284
+&key=<%= ENV['GOOGLE_MAPS_API_KEY'] %>">
+      <div>Your location is <%= @location %>.</div>
     </div>
   </div>
 </div>

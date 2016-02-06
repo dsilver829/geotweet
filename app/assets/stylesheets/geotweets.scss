@@ -1,3 +1,21 @@
-// Place all the styles related to the geotweets controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.accent {
+  color: $brand-primary;
+}
+
+.header, .main {
+  padding-top: $line-height-computed;
+  padding-bottom: $line-height-computed;
+}
+
+.header {
+  background-color: black;
+  font-size: 30px;
+
+  a {
+    text-decoration: none;
+  }
+
+  h1 {
+    display: inline-block;
+  }
+}
