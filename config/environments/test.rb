@@ -39,4 +39,7 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+
+  # Spoof the IP
+  config.middleware.use('SpoofIp', ENV['SPOOF_IP'])
 end
