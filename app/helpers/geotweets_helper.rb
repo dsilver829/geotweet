@@ -1,0 +1,2 @@
+module GeotweetsHelper
+end
