@@ -4,10 +4,16 @@
       <a href="<%= root_url %>"><span class="glyphicon glyphicon-map-marker header" aria-hidden="true"></span><h1 class="accent">Geotweet</h1></a>
     </div>
   </div>
+  <div class="row">
+    <div class="col-xs-12 col-md-6">
+      <ul>
+        <% @geotweets.each do |geotweet| %>
+            <li><%= geotweet %></li>
+        <% end %>
+      </ul>
+    </div>
+    <div class="col-xs-12 col-md-6">
+      Your location is <%= @location %>.
+    </div>
+  </div>
 </div>
-
-<ul>
-  <% @geotweets.each do |geotweet| %>
-      <li><%= geotweet %></li>
-  <% end %>
-</ul>

@@ -29,6 +29,9 @@ gem 'bootstrap-sass'
 # Use TweetStream to access Twitter data
 gem 'tweetstream'
 
+# Use Geocoder to get the user's location
+gem 'geocoder'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

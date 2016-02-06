@@ -7,5 +7,6 @@ class GeotweetsController < ApplicationController
       client.stop if @geotweets.size >= 10
     end
     puts "STOP!"
+    @location = request.location.city
   end
 end
