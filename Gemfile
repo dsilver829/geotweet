@@ -62,5 +62,4 @@ group :test do
   gem 'rspec-rails'
 end
 
-gem 'elasticsearch-persistence'
-
+gem "elasticsearch-persistence", require: 'elasticsearch/persistence/model'
