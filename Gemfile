@@ -62,4 +62,9 @@ group :test do
   gem 'rspec-rails'
 end
 
+# Use elasticsearch
 gem "elasticsearch-persistence", require: 'elasticsearch/persistence/model'
+
+# Use Google Maps
+gem "gmaps4rails"
+gem "underscore-rails"

@@ -13,9 +13,7 @@
       </ol>
     </div>
     <div class="col-xs-12 col-md-6">
-      <img src="https://maps.googleapis.com/maps/api/staticmap?size=600x300&maptype=roadmap
-&<%= markers(@geotweets).join('&') %>">
-      <div>Your location is <%= @location.address %>.</div>
+      <%= render partial: "map", locals: {location: @location } %>
     </div>
   </div>
 </div>
