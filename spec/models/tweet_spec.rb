@@ -11,7 +11,7 @@ describe Tweet, type: :model do
   it 'supports elasticsearch' do
     Tweet.create(status: "Hello!", longitude: 1.0, latitude: 1.0)
     Tweet.import
-    sleep(1)
+    Tweet.__elasticsearch__.refresh_index!
     response = Tweet.search("Hello")
     expect(response.results.total).to eq 1
   end
