@@ -85,5 +85,14 @@ RSpec.configure do |config|
   # as the one that triggered the failure.
   Kernel.srand config.seed
 
+  # Clear elasticsearch indices between tests
+  config.around :each do |example|
+    [Tweet].each do |model|
+      model.__elasticsearch__.create_index!(force: true)
+      model.__elasticsearch__.refresh_index!
+    end
+    example.run
+    Tweet.__elasticsearch__.client.indices.delete index: Tweet.index_name
+  end
 #=end
 end
