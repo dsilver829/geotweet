@@ -9,6 +9,15 @@ class Tweet < ActiveRecord::Base
 
   mapping do
     indexes :id, type: "integer"
+    indexes :location, type: "geo_point", geohash_prefix: true
     indexes :status
+  end
+
+  def as_indexed_json(_options = {})
+    as_json methods: [:location]
+  end
+
+  def location
+    { lat: latitude.to_f, lon: longitude.to_f }
   end
 end
