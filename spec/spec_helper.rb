@@ -88,11 +88,11 @@ RSpec.configure do |config|
   # Clear elasticsearch indices between tests
   config.around :each do |example|
     [Tweet].each do |model|
-      model.__elasticsearch__.create_index!(force: true)
-      model.__elasticsearch__.refresh_index!
+      model.__elasticsearch__.create_index!
+      #model.__elasticsearch__.refresh_index!
     end
     example.run
-    Tweet.__elasticsearch__.client.indices.delete index: Tweet.index_name
+    Tweet.__elasticsearch__.client.indices.delete index: Tweet.index_name.gsub(/_application/,'')
   end
 #=end
 end

@@ -15,4 +15,23 @@ describe Tweet, type: :model do
     response = Tweet.search("Hello")
     expect(response.results.total).to eq 1
   end
+
+  it 'accepts search queries' do
+    Tweet.create(status: "Hello!", longitude: 1.0, latitude: 1.0)
+    Tweet.create(status: "Good bye!", longitude: 1.0, latitude: 1.0)
+    Tweet.import
+    Tweet.__elasticsearch__.refresh_index!
+    response = Tweet.search("*:*")
+    expect(response.results.total).to eq 2
+    response = Tweet.search("hello")
+    expect(response.results.total).to eq 1
+  end
+
+  it "supports geohash" do
+    Tweet.create(status: "Hello!", longitude: 1.0, latitude: 1.0)
+    Tweet.create(status: "Good bye!", longitude: 1.0, latitude: 1.0)
+    Tweet.import
+    Tweet.__elasticsearch__.refresh_index!
+
+  end
 end
