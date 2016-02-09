@@ -11,12 +11,12 @@ feature 'Page' do
     Tweet.__elasticsearch__.refresh_index!
   end
 
-  scenario 'should have the webapp name' do
+  scenario 'displays the webapp name' do
     visit root_url
     expect(page).to have_text "Geotweet"
   end
 
-  scenario 'should have the webapp name', js: true do
+  scenario 'shows the tweets', js: true do
     visit root_path
     expect(page).to have_text "Tweet #1"
     expect(page).to have_text "Tweet #2"
@@ -24,11 +24,14 @@ feature 'Page' do
     expect(page).to have_text "Tweet #4"
   end
 
-  scenario 'should have the webapp name', js: true do
+  scenario 'shows the tweets only once', js: true do
     visit root_path
-    expect(page).to have_text "Tweet #1"
-    expect(page).to have_text "Tweet #2"
+    fill_in 'pac-input', with: 'north america'
+    page.execute_script("$('#pac-input').trigger($.Event('keydown', {keyCode: 13}))")
+
+    expect(page).to have_text "Tweet #1", count: 1
+    expect(page).to have_text "Tweet #2", count: 1
     expect(page).to_not have_text "Tweet #3"
-    expect(page).to have_text "Tweet #4"
+    expect(page).to have_text "Tweet #4", count: 1
   end
 end
