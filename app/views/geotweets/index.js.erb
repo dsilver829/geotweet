@@ -1,6 +1,6 @@
 function newItem() {
   var currentId = $('.list-group-item').first().attr('id');
-  var newId = "<%= @geotweets.results.to_a.first.id %>";
+  var newId = "<%= @geotweets.results.to_a.first ? @geotweets.results.to_a.first.id : 0 %>";
   return currentId != newId;
 }
 
