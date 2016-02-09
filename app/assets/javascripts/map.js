@@ -1,5 +1,5 @@
 window.map;
-window.markersArray = [];
+window.markers = {};
 
 function initAutocomplete() {
     var map = new google.maps.Map(document.getElementById('map'), {
@@ -55,10 +55,11 @@ function initAutocomplete() {
 }
 
 function clearOverlays() {
-    for (var i = 0; i < markersArray.length; i++ ) {
-        window.markersArray[i].setMap(null);
-    }
-    window.markersArray.length = 0;
+    Object.keys(window.markers).forEach(function(key,index) {
+        // key: the name of the object key
+        // index: the ordinal position of the key within the object
+        window.markers[key].setMap(null);
+    });
 }
 
 $(document).ready(function() {
