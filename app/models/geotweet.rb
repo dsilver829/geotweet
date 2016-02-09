@@ -32,6 +32,7 @@ class Geotweet < ActiveRecord::Base
 
   def self.geoquery(bounds)
     Jbuilder.encode do |json|
+      json.size 250
       json.query do
         json.filtered do
           json.filter do
