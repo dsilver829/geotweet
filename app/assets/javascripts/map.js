@@ -61,6 +61,7 @@ function clearOverlays() {
         // key: the name of the object key
         // index: the ordinal position of the key within the object
         window.markers[key].setMap(null);
+        delete window.markers[key];
     });
 }
 
