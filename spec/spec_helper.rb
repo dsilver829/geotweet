@@ -96,12 +96,12 @@ RSpec.configure do |config|
 
   # Clear elasticsearch indices between tests
   config.around :each do |example|
-    [Tweet].each do |model|
+    [Geotweet].each do |model|
       model.__elasticsearch__.create_index!
       #model.__elasticsearch__.refresh_index!
     end
     example.run
-    Tweet.__elasticsearch__.client.indices.delete index: Tweet.index_name.gsub(/_application/,'')
+    Geotweet.__elasticsearch__.client.indices.delete index: Geotweet.index_name.gsub(/_application/, '')
   end
 
   # Run focus specs

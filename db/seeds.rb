@@ -9,7 +9,7 @@
 i = 0
 (-90...90).step(10) do |latitude|
   (-180...180).step(10) do |longitude|
-    Tweet.create(status: "Tweet ##{i}", latitude: latitude, longitude: longitude)
+    Geotweet.create(status: "Geotweet ##{i}", latitude: latitude, longitude: longitude)
     i += 1
   end
 end

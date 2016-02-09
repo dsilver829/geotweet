@@ -1,13 +1,14 @@
 require 'elasticsearch/model'
 require 'jbuilder'
 
-class Tweet < ActiveRecord::Base
+class Geotweet < ActiveRecord::Base
   include Elasticsearch::Model
   include Elasticsearch::Model::Callbacks
 
   index_name [Rails.application.engine_name.gsub(/_application/,''), Rails.env, self.base_class.to_s.pluralize.underscore].join('_')
 
   mapping do
+    indexes :created_at, type: "date"
     indexes :id, type: "integer"
     indexes :location, type: "geo_point", geohash_prefix: true, lat_lon: true
     indexes :status
