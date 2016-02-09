@@ -1,24 +1,29 @@
 $('#geotweet-list').replaceWith("<%= escape_javascript render(:partial => 'list', :locals => { geotweets: @geotweets }) %>");
 
 <% @geotweets.each do |geotweet| %>
-  var latitude  = parseFloat(<%= geotweet.latitude %>);
-  var longitude = parseFloat(<%= geotweet.longitude %>);
-  var latLng = new google.maps.LatLng({lat: latitude, lng: longitude});
+  if($("<%= geotweet.id %>").length == 0) {
+    var latitude  = parseFloat(<%= geotweet.latitude %>);
+    var longitude = parseFloat(<%= geotweet.longitude %>);
+    var latLng = new google.maps.LatLng({lat: latitude, lng: longitude});
 
-  var marker = new google.maps.Marker({
-    icon: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png',
-    map: window.map,
-    position: latLng,
-    title: "<%= geotweet.status %>"
-  });
+    var marker = new google.maps.Marker({
+      icon: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png',
+      map: window.map,
+      position: latLng,
+      title: "<%= geotweet.status %>"
+    });
 
-  window.markers["<%= geotweet.id %>"] = marker;
+    window.markers["<%= geotweet.id %>"] = marker;
 
-  $('li#<%= geotweet.id %>').mouseover(function() {
-    markers["<%= geotweet.id %>"].setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png');
-  });
+    $('li#<%= geotweet.id %>').mouseover(function() {
+      markers["<%= geotweet.id %>"].setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png');
+    });
 
-  $('li#<%= geotweet.id %>').mouseout(function() {
-    markers["<%= geotweet.id %>"].setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png');
-  });
+    $('li#<%= geotweet.id %>').mouseout(function() {
+      markers["<%= geotweet.id %>"].setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png');
+    });
+  }
+
 <% end %>
+
+Map.updateGeotweets();

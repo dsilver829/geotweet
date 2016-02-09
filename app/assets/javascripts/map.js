@@ -1,3 +1,5 @@
+Map = {}
+
 window.map;
 window.markers = {};
 
@@ -62,19 +64,23 @@ function clearOverlays() {
     });
 }
 
+Map.updateGeotweets = function() {
+    var bounds = window.map.getBounds();
+    var SW = bounds.getSouthWest();
+    var NE = bounds.getNorthEast();
+    $.ajax({
+        url: $('#map').data('geotweets-url'),
+        type: "get", //send it through get method
+        data: { lat0: SW.lat(), lon0: SW.lng(), lat1: NE.lat(), lon1: NE.lng() },
+        dataType: 'script'
+    });
+}
+
 $(document).ready(function() {
     var map = initAutocomplete();
 
     google.maps.event.addListener(map, 'bounds_changed', function() {
         clearOverlays();
-        var bounds = map.getBounds();
-        var SW = bounds.getSouthWest();
-        var NE = bounds.getNorthEast();
-        $.ajax({
-            url: $('#map').data('geotweets-url'),
-            type: "get", //send it through get method
-            data: { lat0: SW.lat(), lon0: SW.lng(), lat1: NE.lat(), lon1: NE.lng() },
-            dataType: 'script'
-        });
+        Map.updateGeotweets();
     });
 });

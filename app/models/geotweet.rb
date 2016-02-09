@@ -23,7 +23,6 @@ class Geotweet < ActiveRecord::Base
   end
 
   def self.geosearch(bounds)
-    puts bounds
     query = geoquery(bounds)
     self.search(query)
   end

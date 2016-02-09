@@ -36,4 +36,16 @@ feature 'Geo-Query' do
     expect(items.first.text).to eq 'Geotweet #4'
     expect(items.last.text).to eq 'Geotweet #1'
   end
+
+  scenario 'limit the tweets to 250 at a time', js: true do
+    (1..260).each do |i|
+      Geotweet.create(status: "MyGeotweet ##{i}-Test", latitude: 37.78, longitude: -122.39)
+    end
+    Geotweet.import
+    Geotweet.__elasticsearch__.refresh_index!
+    visit root_path
+    expect(page).to have_text "MyGeotweet #260-Test", count: 1
+    expect(page).to have_text "MyGeotweet #11-Test", count: 1
+    expect(page).to_not have_text "MyGeotweet #1-Test", count: 1
+  end
 end

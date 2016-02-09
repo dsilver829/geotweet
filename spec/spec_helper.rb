@@ -24,6 +24,7 @@ Capybara.javascript_driver = :webkit
 Capybara::Webkit.configure do |config|
   config.allow_url("*.googleapis.com")
   config.allow_url("*.gstatic.com")
+  config.allow_url("*.google.com")
 end
 
 RSpec.configure do |config|
