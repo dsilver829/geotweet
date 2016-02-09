@@ -1,6 +1,14 @@
+.map-container-fixed {
+  position: fixed;
+  top: 20px;
+  height: 100vh;
+  width: calc(50vw - 35px);
+}
+
 #map {
   height: calc(100vh - 153px);
   margin: $line-height-base;
+  margin-right: $line-height-base + 5px;
   min-height: 300px;
   min-width: 300px;
 }
