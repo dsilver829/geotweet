@@ -1,5 +1,5 @@
-<ol id="geotweet-list">
+<ol id="geotweet-list" class="list-group">
   <% geotweets.each do |geotweet| %>
-      <li id="<%= geotweet.id %>"><%= geotweet.status %></li>
+      <li id="<%= geotweet.id %>" class="list-group-item"><%= geotweet.status %></li>
   <% end %>
 </ol>
