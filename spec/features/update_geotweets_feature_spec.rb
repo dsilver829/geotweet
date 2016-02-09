@@ -20,7 +20,7 @@ feature 'Geo-Query' do
   end
 
   scenario 'makes room for the most recent tweet', js: true do
-    (1..250).each do |i|
+    (1..Geotweet::LIMIT).each do |i|
       Geotweet.create(status: "MyGeotweet ##{i}-Test", latitude: 37.78, longitude: -122.39)
     end
     Geotweet.import

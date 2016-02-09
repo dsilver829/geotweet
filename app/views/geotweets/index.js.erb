@@ -5,7 +5,7 @@ function newItem() {
 }
 
 var total = <%= @geotweets.results.total %>;
-while(total > 0 && $('#geotweet-list').children().length >= 250 && newItem()) {
+while(total > 0 && $('#geotweet-list').children().length >= <%= Geotweet::LIMIT %> && newItem()) {
   var item = $('.list-group-item').last();
   window.markers[item.attr('id')].setMap(null);
   delete window.markers[item.attr('id')];

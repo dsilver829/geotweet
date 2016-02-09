@@ -19,7 +19,7 @@ class GeotweetsController < ApplicationController
   end
 
   def limit
-    params[:limit] || 250
+    params[:limit] || Geotweet::LIMIT
   end
 
   def query

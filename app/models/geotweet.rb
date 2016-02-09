@@ -5,6 +5,8 @@ class Geotweet < ActiveRecord::Base
   include Elasticsearch::Model
   include Elasticsearch::Model::Callbacks
 
+  LIMIT = 250
+
   index_name [Rails.application.engine_name.gsub(/_application/,''), Rails.env, self.base_class.to_s.pluralize.underscore].join('_')
 
   mapping do
@@ -31,7 +33,7 @@ class Geotweet < ActiveRecord::Base
 
   def self.geoquery(params)
     Jbuilder.encode do |json|
-      json.size params[:limit] || 250
+      json.size params[:limit] || Geotweet::LIMIT
       json.query do
         json.filtered do
           if params[:query].present?

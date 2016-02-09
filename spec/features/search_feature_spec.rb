@@ -16,7 +16,7 @@ feature 'Geo-Query' do
     fill_in 'query-input', with: 'bar'
     click_on 'Search'
 
-    expect(page).to have_text "2", count: 1
-    expect(page).to_not have_text "3", count: 1
+    expect(page).to have_text "2"
+    expect(page).to_not have_text "3"
   end
 end
