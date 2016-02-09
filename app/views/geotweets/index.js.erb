@@ -1,1 +1,15 @@
 $('#geotweet-list').replaceWith("<%= escape_javascript render(:partial => 'list', :locals => { geotweets: @geotweets }) %>");
+
+<% @geotweets.each do |geotweet| %>
+  var latitude  = parseFloat(<%= geotweet.latitude %>);
+  var longitude = parseFloat(<%= geotweet.longitude %>);
+  var latLng = new google.maps.LatLng({lat: latitude, lng: longitude});
+
+  var marker = new google.maps.Marker({
+    map: window.map,
+    position: latLng,
+    title: "<%= geotweet.status %>"
+  });
+
+  window.markersArray.push(marker);
+<% end %>

@@ -1,9 +1,14 @@
+window.map;
+window.markersArray = [];
+
 function initAutocomplete() {
     var map = new google.maps.Map(document.getElementById('map'), {
         center: {lat: $('#map').data('latitude'), lng: $('#map').data('longitude')},
         zoom: 13,
         mapTypeId: google.maps.MapTypeId.ROADMAP
     });
+
+    window.map = map;
 
     // Create the search box and link it to the UI element.
     var input = document.getElementById('pac-input');
@@ -49,19 +54,26 @@ function initAutocomplete() {
     return map;
 }
 
+function clearOverlays() {
+    for (var i = 0; i < markersArray.length; i++ ) {
+        window.markersArray[i].setMap(null);
+    }
+    window.markersArray.length = 0;
+}
+
 $(document).ready(function() {
     var map = initAutocomplete();
 
     google.maps.event.addListener(map, 'bounds_changed', function() {
+        clearOverlays();
         var bounds = map.getBounds();
-        console.log(bounds);
         var SW = bounds.getSouthWest();
         var NE = bounds.getNorthEast();
         $.ajax({
             url: $('#map').data('geotweets-url'),
             type: "get", //send it through get method
-            data: { lat0: SW.lat(), lon0: SW.lng(), lat1: NE.lat(), lon1: NE.lng(), val: bounds.toUrlValue() },
+            data: { lat0: SW.lat(), lon0: SW.lng(), lat1: NE.lat(), lon1: NE.lng() },
             dataType: 'script'
-        })
+        });
     });
 });
