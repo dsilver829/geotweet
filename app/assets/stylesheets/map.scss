@@ -1,6 +1,8 @@
 #map {
   height: calc(100vh - 153px);
   margin: $line-height-base;
+  min-height: 300px;
+  min-width: 300px;
 }
 .controls {
   margin-top: 10px;

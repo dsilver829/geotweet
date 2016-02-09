@@ -27,33 +27,12 @@ describe Tweet, type: :model do
     expect(response.results.total).to eq 1
   end
 
-  it "supports geohash" do
+  it "supports geosearch" do
     Tweet.create(status: "Hello!", longitude: 1.0, latitude: 1.0)
     Tweet.create(status: "Good bye!", longitude: 90.0, latitude: 90.0)
     Tweet.import
     Tweet.__elasticsearch__.refresh_index!
-    response = Tweet.search(geo_query)
+    response = Tweet.geosearch(top_left: { lat: 2.0, lon: 0.0 }, bottom_right: { lat: 0.0, lon: 2.0 })
     expect(response.results.total).to eq 1
-  end
-
-  private
-
-  def geo_query
-    Jbuilder.encode do |json|
-      json.query do
-        json.filtered do
-          json.filter do
-            json.geohash_cell do
-              json.location do
-                json.lat 1.0
-                json.lon 1.0
-              end
-              json.neighbors true
-              json.precision "2km"
-            end
-          end
-        end
-      end
-    end
   end
 end

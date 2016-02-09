@@ -9,7 +9,7 @@ class Tweet < ActiveRecord::Base
 
   mapping do
     indexes :id, type: "integer"
-    indexes :location, type: "geo_point", geohash_prefix: true
+    indexes :location, type: "geo_point", geohash_prefix: true, lat_lon: true
     indexes :status
   end
 
@@ -21,25 +21,29 @@ class Tweet < ActiveRecord::Base
     { lat: latitude.to_f, lon: longitude.to_f }
   end
 
-  def self.geosearch(location)
-    query = geoquery(location)
+  def self.geosearch(bounds)
+    query = geoquery(bounds)
     self.search(query)
   end
 
   private
 
-  def self.geoquery(location)
+  def self.geoquery(bounds)
     Jbuilder.encode do |json|
       json.query do
         json.filtered do
           json.filter do
-            json.geohash_cell do
+            json.geo_bounding_box do
               json.location do
-                json.lat location.latitude
-                json.lon location.longitude
+                json.top_left do
+                  json.lat bounds[:top_left][:lat]
+                  json.lon bounds[:top_left][:lon]
+                end
+                json.bottom_right do
+                  json.lat bounds[:bottom_right][:lat]
+                  json.lon bounds[:bottom_right][:lon]
+                end
               end
-              json.neighbors true
-              json.precision "20km"
             end
           end
         end

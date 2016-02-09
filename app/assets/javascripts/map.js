@@ -45,8 +45,23 @@ function initAutocomplete() {
         map.fitBounds(bounds);
     });
     // [END region_getplaces]
+
+    return map;
 }
 
 $(document).ready(function() {
-    initAutocomplete();
+    var map = initAutocomplete();
+
+    google.maps.event.addListener(map, 'bounds_changed', function() {
+        var bounds = map.getBounds();
+        console.log(bounds);
+        var SW = bounds.getSouthWest();
+        var NE = bounds.getNorthEast();
+        $.ajax({
+            url: $('#map').data('geotweets-url'),
+            type: "get", //send it through get method
+            data: { lat0: SW.lat(), lon0: SW.lng(), lat1: NE.lat(), lon1: NE.lng(), val: bounds.toUrlValue() },
+            dataType: 'script'
+        })
+    });
 });

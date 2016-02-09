@@ -59,7 +59,9 @@ end
 
 group :test do
   gem 'capybara'
+  gem 'capybara-webkit'
   gem 'rspec-rails'
+  gem 'selenium-webdriver'
 end
 
 gem 'elasticsearch-rails'

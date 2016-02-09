@@ -5,12 +5,7 @@
     </div>
   </div>
   <div class="row main">
-    <div class="col-xs-12 col-md-6">
-      <ol>
-        <% @geotweets.each do |geotweet| %>
-            <li><%= geotweet.status %></li>
-        <% end %>
-      </ol>
+    <div class="col-xs-12 col-md-6" id="geotweets-container">
     </div>
     <div class="col-xs-12 col-md-6 map-container">
       <%= render partial: "map", locals: {location: @location } %>
