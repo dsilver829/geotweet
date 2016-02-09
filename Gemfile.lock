@@ -108,7 +108,6 @@ GEM
     geocoder (1.3.0)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
-    gmaps4rails (2.1.2)
     hashie (3.4.3)
     http (1.0.2)
       addressable (~> 2.3)
@@ -236,7 +235,6 @@ GEM
     uglifier (2.7.2)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
-    underscore-rails (1.8.3)
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.7.2)
@@ -260,7 +258,6 @@ DEPENDENCIES
   elasticsearch-model
   elasticsearch-rails
   geocoder
-  gmaps4rails
   jbuilder (~> 2.0)
   jquery-rails
   pg
@@ -272,7 +269,6 @@ DEPENDENCIES
   turbolinks
   tweetstream
   uglifier (>= 1.3.0)
-  underscore-rails
   web-console (~> 2.0)
 
 BUNDLED WITH

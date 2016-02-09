@@ -64,6 +64,3 @@ end
 
 gem 'elasticsearch-rails'
 gem 'elasticsearch-model'
-
-gem 'gmaps4rails'
-gem 'underscore-rails'
