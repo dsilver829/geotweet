@@ -64,7 +64,7 @@ function clearOverlays() {
     });
 }
 
-Map.updateGeotweets = function() {
+Map.updateGeotweets = function(callback) {
     var bounds = window.map.getBounds();
     var SW = bounds.getSouthWest();
     var NE = bounds.getNorthEast();
@@ -74,13 +74,22 @@ Map.updateGeotweets = function() {
         data: { lat0: SW.lat(), lon0: SW.lng(), lat1: NE.lat(), lon1: NE.lng() },
         dataType: 'script'
     });
+
+    if(callback === true) {
+        setTimeout( function() {
+            Map.updateGeotweets(true);
+        }, 1000 );
+    }
 }
 
 $(document).ready(function() {
     var map = initAutocomplete();
 
+    var callback = true;
     google.maps.event.addListener(map, 'bounds_changed', function() {
         clearOverlays();
-        Map.updateGeotweets();
+        Map.updateGeotweets(callback);
+        callback = false;
+        $('#geotweet-list').empty();
     });
 });

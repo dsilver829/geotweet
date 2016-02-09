@@ -1,5 +1,5 @@
 <ol id="geotweet-list" class="list-group">
   <% geotweets.each do |geotweet| %>
-      <li id="<%= geotweet.id %>" class="list-group-item"><%= geotweet.status %></li>
+      <%= render partial: 'list_item', locals: { geotweet: geotweet } %>
   <% end %>
 </ol>

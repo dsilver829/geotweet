@@ -34,7 +34,7 @@ feature 'Geo-Query' do
 
     expect(page).to have_text "Geotweet #250-Test"
     expect(page).to have_text "Geotweet #2-Test"
-    expect(page).to_not have_text "Geotweet #1-Test"
     expect(page).to have_text "Geotweet #1-Bar"
+    expect(page).to_not have_text "Geotweet #1-Test"
   end
 end
