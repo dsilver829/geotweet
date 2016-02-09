@@ -21,9 +21,9 @@ describe Geotweet, type: :model do
     Geotweet.create(status: "Good bye!", longitude: 1.0, latitude: 1.0)
     Geotweet.import
     Geotweet.__elasticsearch__.refresh_index!
-    response = Geotweet.search("*:*")
+    response = Geotweet.geosearch(top_left: {lat: 90.0, lon: -180.0 }, bottom_right: {lat: -90.0, lon: 180.0 })
     expect(response.results.total).to eq 2
-    response = Geotweet.search("hello")
+    response = Geotweet.geosearch(top_left: {lat: 90.0, lon: -180.0 }, bottom_right: {lat: -90.0, lon: 180.0 }, query: "hello")
     expect(response.results.total).to eq 1
   end
 

@@ -1,4 +1,11 @@
 <div id="map-container">
   <input id="pac-input" class="controls" type="text" placeholder="Search">
   <div id="map" data-latitude="<%= location.latitude %>" data-longitude="<%= location.longitude %>" data-geotweets-url="<%= geotweets_url %>"></div>
+  <%= form_tag geotweets_url, method: :get, remote: true, class: 'form-inline search-form' do %>
+    <div class="form-group">
+      <input id="query-input" class="form-control input-lg" type="text" placeholder="Search Geotwitter">
+      <input id="hidden-query-input" type="hidden">
+      <button type="submit" class="btn btn-primary btn-lg" id="query-search">Search</button>
+    </div>
+  <% end %>
 </div>

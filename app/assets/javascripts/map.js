@@ -72,7 +72,7 @@ Map.updateGeotweets = function(callback) {
     $.ajax({
         url: $('#map').data('geotweets-url'),
         type: "get", //send it through get method
-        data: { lat0: SW.lat(), lon0: SW.lng(), lat1: NE.lat(), lon1: NE.lng(), limit: 250 - $('#geotweet-list').children().length },
+        data: { lat0: SW.lat(), lon0: SW.lng(), lat1: NE.lat(), lon1: NE.lng(), limit: 250 - $('#geotweet-list').children().length, query: $('#hidden-query-input').val() },
         dataType: 'script'
     });
 
