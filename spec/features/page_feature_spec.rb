@@ -34,4 +34,11 @@ feature 'Page' do
     expect(page).to_not have_text "Tweet #3"
     expect(page).to have_text "Tweet #4", count: 1
   end
+
+  scenario 'shows the tweets in descending chronological order', js: true do
+    visit root_path
+    items = page.all('ol#geotweet-list li')
+    expect(items.first.text).to eq 'Tweet #4'
+    expect(items.last.text).to eq 'Tweet #1'
+  end
 end

@@ -48,6 +48,11 @@ class Tweet < ActiveRecord::Base
           end
         end
       end
+      json.sort do
+        json.created_at do
+          json.order "desc"
+        end
+      end
     end
   end
 end
