@@ -94,5 +94,9 @@ RSpec.configure do |config|
     example.run
     Tweet.__elasticsearch__.client.indices.delete index: Tweet.index_name.gsub(/_application/,'')
   end
+
+  # Run focus specs
+  config.filter_run :focus => true
+
 #=end
 end

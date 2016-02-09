@@ -39,7 +39,7 @@ class Tweet < ActiveRecord::Base
                 json.lon location.longitude
               end
               json.neighbors true
-              json.precision "2km"
+              json.precision "20km"
             end
           end
         end
