@@ -1,4 +1,7 @@
-html,body { height:100%; }
+html,body {
+  height:100%;
+  background: #EEEEEE;
+}
 
 .accent {
   color: $brand-primary;
@@ -24,7 +27,6 @@ html,body { height:100%; }
 }
 
 .main {
-  background: #EEEEEE;
 }
 
 .search-form {
