@@ -30,6 +30,11 @@ The layout is structured with [Bootstrap](http://getbootstrap.com/), allowing fo
 
 The webapp uses a combination of jQuery, CSS, and Bootstrap to implement highlighting and scrolling features.
 
+## Test-Driven Development
+I developed this Rails app using [Test-Driven Development](https://en.wikipedia.org/wiki/Test-driven_development) with [RSpec](http://rspec.info/). I wrote both model and integration (feature) specs, using the ["Red, Green, Refactor"](https://www.google.com/search?client=ubuntu&channel=fs&q=red+green+refactor&ie=utf-8&oe=utf-8) pattern.
+
+Capybara webkit is the driver for headless JavaScript testing. 
+
 ## Deployment
 AWS hosts the webapp on a variety of services available as part of their [Free Tier](https://aws.amazon.com/free/).
 
@@ -47,3 +52,9 @@ At maximum utilization, I estimate this configuration will require ~1 GB of stor
 150 trillion sq. m. (surface area of earth) / 24.4 billion sq. m. (surface area of a grid cell) * 250 tweets * ~500 bytes (per tweet) = ~0.8 GB
 
 This is the highest feasible resolution on the Free Tier. For example, geohash level 4 (39.1km x 19.5km) would require up to ~25 GB of storage.
+
+## To Do
+1. Implement access control on the AWS Elasticsearch Service instance.
+2. Write a script to automatically launch the tweetstream daemon upon Elastic Beanstalk deployment.
+3. Develop mocks for 3rd-party services (i.e. tweetstream) so the specs have fewer dependencies.
+4. Investigate avenues for accelerating the stream of tweets.
