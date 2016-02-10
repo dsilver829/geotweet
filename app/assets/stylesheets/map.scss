@@ -1,12 +1,19 @@
-.map-container-fixed {
-  position: fixed;
-  top: 20px;
-  height: 100vh;
-  width: calc(50vw - 35px);
+@media all and (min-width: 768px) {
+  .map-container-fixed {
+    position: fixed;
+    top: 20px;
+    height: 100vh;
+    width: calc(50vw - 35px);
+  }
 }
 
 #map {
-  height: calc(100vh - 153px - 100px);
+  @media all and (max-width: 767px) {
+    height: calc(100vh - 153px - 300px);
+  }
+  @media all and (min-width: 768px) {
+    height: calc(100vh - 153px - 100px);
+  }
   margin-right: 5px;
   min-height: 300px;
   min-width: 300px;
@@ -51,4 +58,46 @@
   font-family: Roboto;
   font-size: 13px;
   font-weight: 300;
+}
+
+.search-form {
+  margin-top: $line-height-computed;
+
+  .btn {
+    margin-left: $grid-gutter-width / 2;
+  }
+
+  .form-group {
+    width: 100%;
+  }
+
+  .form-control {
+    width: calc(100% - 115px);
+  }
+}
+
+@media all and (max-width: 767px) {
+  input#query-input {
+    width: 100%;
+  }
+
+  button#query-submit {
+    margin-left: 0;
+    margin-top: $line-height-computed;
+  }
+}
+
+.list-group-item {
+  div.geotweet-photo, div.geotweet-content {
+    display: inline-block;
+    vertical-align: top;
+    margin: 5px;
+    max-width: calc(100% - 80px);
+  }
+
+  div.geotweet-photo {
+    img {
+      border-radius: 4px;
+    }
+  }
 }

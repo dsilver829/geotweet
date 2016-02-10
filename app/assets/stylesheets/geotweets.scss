@@ -29,37 +29,6 @@ html,body {
 .main {
 }
 
-.search-form {
-  margin-top: $line-height-computed;
-
-  .btn {
-    margin-left: $grid-gutter-width / 2;
-  }
-
-  .form-group {
-    width: 100%;
-  }
-
-  .form-control {
-    width: calc(100% - 115px);
-  }
-}
-
-.list-group-item {
-  div.geotweet-photo, div.geotweet-content {
-    display: inline-block;
-    vertical-align: top;
-    margin: 5px;
-    max-width: calc(100% - 80px);
-  }
-
-  div.geotweet-photo {
-    img {
-      border-radius: 4px;
-    }
-  }
-}
-
 .geotweet-content {
   a {
     font-weight: bold;
