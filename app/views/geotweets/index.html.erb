@@ -5,11 +5,11 @@
     </div>
   </div>
   <div class="row main">
-    <div class="col-xs-12 col-md-6" id="geotweets-container">
-      <ol id="geotweet-list"></ol>
-    </div>
     <div class="col-xs-12 col-md-6">
       <%= render partial: "map", locals: {location: @location } %>
+    </div>
+    <div class="col-xs-12 col-md-6" id="geotweets-container">
+      <ol id="geotweet-list"></ol>
     </div>
   </div>
 </div>
