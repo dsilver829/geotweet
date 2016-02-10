@@ -1,6 +1,4 @@
 $(document).ready(function() {
-    console.log("ready");
-
     var container = $("#map-container");
 
     $(window).on("scroll", function(e) {

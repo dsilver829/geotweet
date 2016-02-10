@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    $( "#query-search" ).click(function( event ) {
+    $( "#query-submit" ).click(function( event ) {
         event.preventDefault();
         clearOverlays();
         var query = $('#query-input').val();
@@ -10,7 +10,7 @@ $(document).ready(function() {
 
     $("form input#query-input").keypress(function (e) {
         if ((e.which && e.which == 13) || (e.keyCode && e.keyCode == 13)) {
-            $('button#query-search').click();
+            $('button#query-submit').click();
             return false;
         } else {
             return true;
