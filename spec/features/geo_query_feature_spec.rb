@@ -33,8 +33,8 @@ feature 'Geo-Query' do
   scenario 'shows the tweets in descending chronological order', js: true do
     visit root_path
     items = page.all('ol#geotweet-list li')
-    expect(items.first.text).to eq 'Geotweet #4'
-    expect(items.last.text).to eq 'Geotweet #1'
+    expect(items.first.text).to include 'Geotweet #4'
+    expect(items.last.text).to include 'Geotweet #1'
   end
 
   scenario 'limit the tweets to 250 at a time', js: true do

@@ -43,6 +43,40 @@ html,body { height:100%; }
   }
 }
 
-.li-highlight {
-  background-color: yellow;
+.list-group-item {
+  div.geotweet-photo, div.geotweet-content {
+    display: inline-block;
+    vertical-align: top;
+    margin: 5px;
+    max-width: calc(100% - 80px);
+  }
+
+  div.geotweet-photo {
+    img {
+      border-radius: 4px;
+    }
+  }
+}
+
+.geotweet-content {
+  a {
+    font-weight: bold;
+    color: black;
+  }
+
+  .screenname, .geotweet-time {
+    color: lighten($text-color, 20%);
+    font-size: $font-size-base;
+  }
+}
+
+.active {
+  .screenname, .geotweet-time {
+    color: darken(white, 5%);
+  }
+}
+
+.geotweet-content-row {
+  display: block;
+  font-size: $font-size-large;
 }
