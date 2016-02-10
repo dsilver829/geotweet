@@ -76,12 +76,12 @@ class Geotweet < ActiveRecord::Base
             json.geo_bounding_box do
               json.location do
                 json.top_left do
-                  json.lat params[:top_left][:lat]
-                  json.lon params[:top_left][:lon]
+                  json.lat params[:top_left][:lat] || 90
+                  json.lon params[:top_left][:lon] || -180
                 end
                 json.bottom_right do
-                  json.lat params[:bottom_right][:lat]
-                  json.lon params[:bottom_right][:lon]
+                  json.lat params[:bottom_right][:lat] || -90
+                  json.lon params[:bottom_right][:lon] || 180
                 end
               end
             end
