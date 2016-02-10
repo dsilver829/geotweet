@@ -57,4 +57,5 @@ This is the highest feasible resolution on the Free Tier. For example, geohash l
 1. Implement access control on the AWS Elasticsearch Service instance.
 2. Write a script to automatically launch the tweetstream daemon upon Elastic Beanstalk deployment.
 3. Develop mocks for 3rd-party services (i.e. tweetstream) so the specs have fewer dependencies.
-4. Investigate avenues for accelerating the stream of tweets.
+4. Improve the search feature to search all tweets (not just the ones on the map right now), and intelligently moves the map to the tweets.
+5. Investigate avenues for accelerating the stream of tweets.
