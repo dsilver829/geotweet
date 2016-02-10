@@ -64,8 +64,11 @@ class Geotweet < ActiveRecord::Base
         json.filtered do
           if params[:query].present?
             json.query do
-              json.match do
-                json.status params[:query]
+              json.multi_match do
+                json.query params[:query]
+                json.fields do
+                  json.array! ["status", "user_name", "user_screen_name"]
+                end
               end
             end
           end
