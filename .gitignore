@@ -40,3 +40,5 @@ instructions.txt
 
 .env
 database.yml
+
+*.pid
