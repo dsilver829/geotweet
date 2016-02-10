@@ -42,3 +42,9 @@ instructions.txt
 database.yml
 
 *.pid
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
+dsilver@dsilver-desktop ~/code/geotwee
