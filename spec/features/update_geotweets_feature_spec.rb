@@ -13,9 +13,8 @@ feature 'Geo-Query' do
 
   scenario 'updates the tweets', js: true do
     visit root_path
-    Geotweet.create(status: "Geotweet #5", latitude: 37.775, longitude: -122.395)
-    Geotweet.import
-    Geotweet.__elasticsearch__.refresh_index!
+    geotweet = Geotweet.create(status: "Geotweet #5", latitude: 37.775, longitude: -122.395)
+    geotweet.__elasticsearch__.index_document
     expect(page).to have_text "Geotweet #5"
   end
 

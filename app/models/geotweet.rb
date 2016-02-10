@@ -24,12 +24,35 @@ class Geotweet < ActiveRecord::Base
     { lat: latitude.to_f, lon: longitude.to_f }
   end
 
+  def geohash_neighbors
+    response = Geotweet.search(geohash_query)
+    response.results
+  end
+
   def self.geosearch(params)
     query = geoquery(params)
     self.search(query)
   end
 
   private
+
+  def geohash_query
+    Jbuilder.encode do |json|
+      json.query do
+        json.filtered do
+          json.filter do
+            json.geohash_cell do
+              json.location do
+                json.lat latitude
+                json.lon longitude
+              end
+              json.precision 3
+            end
+          end
+        end
+      end
+    end
+  end
 
   def self.geoquery(params)
     Jbuilder.encode do |json|

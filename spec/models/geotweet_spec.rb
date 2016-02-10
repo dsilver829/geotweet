@@ -35,4 +35,14 @@ describe Geotweet, type: :model do
     response = Geotweet.geosearch(top_left: {lat: 2.0, lon: 0.0 }, bottom_right: {lat: 0.0, lon: 2.0 })
     expect(response.results.total).to eq 1
   end
+
+  it "supports geohash" do
+    geotweet1 = Geotweet.create(status: "Hello!", longitude: 1.0, latitude: 1.0)
+    Geotweet.create(status: "Good bye!", longitude: 1.0, latitude: 1.0)
+    Geotweet.create(status: "Away!", longitude: 90.0, latitude: 90.0)
+    Geotweet.import
+    Geotweet.__elasticsearch__.refresh_index!
+    results = geotweet1.geohash_neighbors
+    expect(results.total).to eq 2
+  end
 end
