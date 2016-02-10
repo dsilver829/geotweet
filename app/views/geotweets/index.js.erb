@@ -26,15 +26,26 @@ while(total > 0 && $('#geotweet-list').children().length >= <%= Geotweet::LIMIT 
       position: latLng,
       title: "<%= escape_javascript geotweet.status %>"
     });
-
     window.markers["<%= geotweet.id %>"] = marker;
 
+    marker.addListener('mouseover', function() {
+      $('li#<%= geotweet.id %>').addClass('active');
+    });
+
+    marker.addListener('mouseout', function() {
+      $('li#<%= geotweet.id %>').removeClass('active');
+    });
+
     $('li#<%= geotweet.id %>').mouseover(function () {
-      window.markers["<%= geotweet.id %>"].setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png');
+      var marker = window.markers["<%= geotweet.id %>"];
+      marker.setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png');
+      marker.setZIndex(google.maps.Marker.MAX_ZINDEX + 1);
     });
 
     $('li#<%= geotweet.id %>').mouseout(function () {
-      window.markers["<%= geotweet.id %>"].setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png');
+      var marker = window.markers["<%= geotweet.id %>"];
+      marker.setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png');
+      marker.setZIndex(0);
     });
   }
 <% end %>
