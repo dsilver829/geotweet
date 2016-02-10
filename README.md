@@ -49,7 +49,7 @@ The app uses geohash to divide the world into 156.5km x 156.5km grid cells ([geo
 
 At maximum utilization, I estimate this configuration will require ~1 GB of storage, which fits comfortably within the [AWS Free Tier](https://aws.amazon.com/free/):
 
-150 trillion sq. m. (surface area of earth) / 24.4 billion sq. m. (surface area of a grid cell) * 250 tweets * ~500 bytes (per tweet) = ~0.8 GB
+150 trillion sq. m. (land surface area of earth) / 24.4 billion sq. m. (surface area of a grid cell) * 250 tweets * ~500 bytes (per tweet) = ~0.8 GB
 
 This is the highest feasible resolution on the Free Tier. For example, geohash level 4 (39.1km x 19.5km) would require up to ~25 GB of storage.
 
