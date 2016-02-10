@@ -3,7 +3,7 @@ puts ENV["RAILS_ENV"]
 root = File.expand_path(File.join(File.dirname(__FILE__), '..'))
 require File.join(root, 'config', 'environment')
 
-log = File.join(root, 'log', 'stream.log')
+log = File.join('.', 'stream.log')
 
 daemon = TweetStream::Daemon.new('tweet_streamer', log_output: true)
 daemon.on_inited do
