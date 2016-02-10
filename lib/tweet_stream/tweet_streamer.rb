@@ -1,6 +1,6 @@
 puts ENV["RAILS_ENV"]
 
-root = File.expand_path(File.join(File.dirname(__FILE__), '..'))
+root = File.expand_path(File.join(File.dirname(__FILE__), '../..'))
 require File.join(root, 'config', 'environment')
 
 log = File.join('.', 'stream.log')
