@@ -29,11 +29,15 @@ while(total > 0 && $('#geotweet-list').children().length >= <%= Geotweet::LIMIT 
     window.markers["<%= geotweet.id %>"] = marker;
 
     marker.addListener('mouseover', function() {
+      var marker = window.markers["<%= geotweet.id %>"];
       $('li#<%= geotweet.id %>').addClass('active');
+      marker.setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png');
     });
 
     marker.addListener('mouseout', function() {
+      var marker = window.markers["<%= geotweet.id %>"];
       $('li#<%= geotweet.id %>').removeClass('active');
+      marker.setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png');
     });
 
     $('li#<%= geotweet.id %>').mouseover(function () {
