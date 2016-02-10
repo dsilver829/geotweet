@@ -14,6 +14,10 @@ class Geotweet < ActiveRecord::Base
     indexes :id, type: "integer"
     indexes :location, type: "geo_point", geohash_prefix: true, lat_lon: true
     indexes :status
+    indexes :timestamp_ms, type: "long"
+    indexes :user_name
+    indexes :user_profile_image_url
+    indexes :user_screen_name
   end
 
   def as_indexed_json(_options = {})
