@@ -66,3 +66,6 @@ end
 
 gem 'elasticsearch-rails'
 gem 'elasticsearch-model'
+
+# Use Amazon Web Services Elastic Beanstalk
+gem 'puma'
