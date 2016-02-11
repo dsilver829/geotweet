@@ -20,7 +20,7 @@ daemon.locations(-180,-90,180,90) do |tweet|
   geotweet.__elasticsearch__.index_document
   neighbors = geotweet.geohash_neighbors
   if(neighbors.total > Geotweet::LIMIT)
-    neighbor = neighbors.to_a.first
+    neighbor = neighbors.to_a.last
     neighbor = Geotweet.find(neighbor.id)
     neighbor.__elasticsearch__.delete_document
     ActiveRecord::Base.logger.info(tweet.full_text)
