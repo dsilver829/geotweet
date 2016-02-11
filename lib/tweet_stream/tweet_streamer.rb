@@ -4,12 +4,12 @@
 root = File.expand_path(File.join(File.dirname(__FILE__), '..', '..'))
 require File.join(root, 'config', 'environment')
 
-log = File.join('.', 'stream.log')
+log = File.join(root, 'lib', 'tweet_stream', 'stream.log')
 
 daemon = TweetStream::Daemon.new('tweet_streamer', log_output: true)
 daemon.on_inited do
   ActiveRecord::Base.connection.reconnect!
-  ActiveRecord::Base.logger = Logger.new(File.open(log, 'w+'))
+  ActiveRecord::Base.logger = Logger.new(File.open(log, 'a'))
 end
 ActiveRecord::Base.logger.info("starting...")
 daemon.locations(-180,-90,180,90) do |tweet|
