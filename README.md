@@ -1,4 +1,4 @@
-# GeoTweet
+# Geotweet
 Geotweet filters tweets by location and search query.
 
 ## Back-End Architecture
