@@ -18,7 +18,7 @@ development:
   database: <%= ENV['DEVELOPMENT_DATABASE_NAME'] %>
   host: localhost
   pool: 5
-  username: <%= ENV['DEVELOPMENT_DATABASE_USER'] %>
+  username: <%= ENV['DEVELOPMENT_DATABASE_USERNAME'] %>
   password: <%= ENV['DEVELOPMENT_DATABASE_PASSWORD'] %>
 
   # Connect on a TCP socket. Omitted by default since the client uses a
@@ -45,7 +45,7 @@ test:
   database: <%= ENV['TEST_DATABASE_NAME'] %>
   host: localhost
   pool: 5
-  username: <%= ENV['TEST_DATABASE_USER'] %>
+  username: <%= ENV['TEST_DATABASE_USERNAME'] %>
   password: <%= ENV['TEST_DATABASE_PASSWORD'] %>
 
 production:
@@ -53,5 +53,5 @@ production:
   encoding: unicode
   database: <%= ENV['PRODUCTION_DATABASE_NAME'] %>
   pool: 5
-  username: <%= ENV['PRODUCTION_DATABASE_USER'] %>
+  username: <%= ENV['PRODUCTION_DATABASE_USERNAME'] %>
   password: <%= ENV['PRODUCTION_DATABASE_PASSWORD'] %>

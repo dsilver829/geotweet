@@ -51,9 +51,9 @@ test:
 production:
   adapter: postgresql
   encoding: unicode
-  host: <%= ENV['PRODUCTION_DATABASE_HOST'] %>
-  port: <%= ENV['PRODUCTION_DATABASE_PORT'] %>
   database: <%= ENV['PRODUCTION_DATABASE_NAME'] %>
   pool: 5
   username: <%= ENV['PRODUCTION_DATABASE_USERNAME'] %>
   password: <%= ENV['PRODUCTION_DATABASE_PASSWORD'] %>
+  host: <%= ENV['PRODUCTION_DATABASE_HOST'] %>
+  port: <%= ENV['PRODUCTION_DATABASE_PORT'] %>

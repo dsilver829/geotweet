@@ -8,31 +8,22 @@ module GeotweetsHelper
   end
 
   def time_diff(geotweet)
-    diff = (Time.now - Time.new(geotweet.created_at)).to_i
-    years_diff(diff) || months_diff(diff) || days_diff(diff) || hours_diff(diff) || minutes_diff(diff) || seconds_diff(diff)
+    creation = geotweet.created_at.to_time
+    diff = (Time.now - creation).to_i
+    date_str(creation, diff) || diff_str(diff) || "Now"
   end
 
   private
 
-  def years_diff(diff)
-    years = diff / (365 * 24 * 60 * 60)
-    if years > 0
-      "#{years}y"
+  def date_str(creation, diff)
+    if diff < 60 * 60 * 24
+      return nil
     end
+    creation.strftime("%e %b")
   end
 
-  def months_diff(diff)
-    months = diff / (30 * 24 * 60 * 60)
-    if months > 0
-      "#{months}m"
-    end
-  end
-
-  def days_diff(diff)
-    days = diff / (24 * 60 * 60)
-    if days > 0
-      "#{days}d"
-    end
+  def diff_str(diff)
+    hours_diff(diff) || minutes_diff(diff)
   end
 
   def hours_diff(diff)

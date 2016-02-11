@@ -11,7 +11,7 @@ class Geotweet < ActiveRecord::Base
 
   mapping do
     indexes :created_at, type: "date"
-    indexes :id, type: "integer"
+    indexes :id, type: "long"
     indexes :location, type: "geo_point", geohash_prefix: true, lat_lon: true
     indexes :status
     indexes :user_name

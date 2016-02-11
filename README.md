@@ -1,19 +1,23 @@
-# GeoTweet
+# Geotweet
 Geotweet filters tweets by location and search query.
 
 ## Back-End Architecture
-The webapp uses [Ruby on Rails](http://rubyonrails.org/), a [PostgreSQL](http://www.postgresql.org/) database, and an [Elasticsearch](https://www.elastic.co/products/elasticsearch) instance for geohashing and querying.
+The webapp uses [Ruby on Rails](http://rubyonrails.org/) for the web framework, and an [Elasticsearch](https://www.elastic.co/products/elasticsearch) instance for geohashing and querying.
 
 A [deamon](https://github.com/thuehlinger/daemons) uses the [tweetstream gem](https://github.com/tweetstream/tweetstream) to continously stream tweets from Twitter's [Developer API](https://dev.twitter.com/), store them to the database, and index them in the Elasticsearch instance.
 
 The Rails app uses the [Geocoder](http://www.rubygeocoder.com/) gem to identify the user's location.
 
 #### Elasticsearch
+Elasticsearch is the data store for the webapp.
+
 The Rails app handles search requests by sending query and filter requests to the Elasticsearch instance. Elasticsearch uses the [geo point type](https://www.elastic.co/guide/en/elasticsearch/reference/1.4/mapping-geo-point-type.html), with [geohashing](https://www.elastic.co/guide/en/elasticsearch/guide/current/geohashes.html) enabled, to index tweets. 
 
 To locate tweets within the bounds of a user's Google Map, the Rails app uses [geo bounding box filters](https://www.elastic.co/guide/en/elasticsearch/reference/1.4/query-dsl-geo-bounding-box-filter.html).
 
 To group and count tweets by geographic location, the Rails app uses [geohash cell filters](https://www.elastic.co/guide/en/elasticsearch/guide/current/geohash-cell-filter.html). 
+
+The app uses the [elasticsearch-persistence](https://github.com/elastic/elasticsearch-rails/tree/master/elasticsearch-persistence) gem with the ActiveRecord pattern. This pattern requires the Rails [ActiveRecord](http://guides.rubyonrails.org/active_record_basics.html) class, which in turn requires a database connection. Therefore the webapp maintains a connection to a PostgreSQL database, although it stores no data in that database.
 
 ## Front-End Architecture
 The user interface relies on [Rails Ajax patterns](http://guides.rubyonrails.org/working_with_javascript_in_rails.html), [jQuery](https://jquery.com/), and the [Google Maps Javascript API](https://developers.google.com/maps/documentation/javascript/).
@@ -55,7 +59,6 @@ This is the highest feasible resolution on the Free Tier. For example, geohash l
 
 ## To Do
 1. Implement access control on the AWS Elasticsearch Service instance.
-2. Write a script to automatically launch the tweetstream daemon upon Elastic Beanstalk deployment.
-3. Develop mocks for 3rd-party services (i.e. tweetstream) so the specs have fewer dependencies.
-4. Improve the search feature to search all tweets (not just the ones on the map right now), and intelligently moves the map to the tweets.
-5. Investigate avenues for accelerating the stream of tweets (e.g. obtain elevated access and use the 'count' parameter on the Twitter API to backfill on the fly).
+2. Develop mocks for 3rd-party services (i.e. tweetstream) so the specs have fewer dependencies.
+3. Improve the search feature to search all tweets (not just the ones on the map right now), and intelligently moves the map to the tweets.
+4. Investigate avenues for accelerating the stream of tweets (e.g. obtain elevated access and use the 'count' parameter on the Twitter API to backfill on the fly).
