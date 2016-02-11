@@ -1,5 +1,6 @@
 # `RAILS_ENV=production ruby ./tweet_streamer.rb start`
-# `pwd` must be in the root directory of the Rails app at the time the daemon is launched (at least in development)
+# In production, this must be run from the lib/tweet_stream directory, due to permissions issues.
+# In development, this must be run from the RAILS_ROOT directory, due to issues with Spring.
 
 root = File.expand_path(File.join(File.dirname(__FILE__), '..', '..'))
 require File.join(root, 'config', 'environment')
