@@ -1,6 +1,7 @@
-puts ENV["RAILS_ENV"]
+# `RAILS_ENV=production ruby ./tweet_streamer.rb start`
+# `pwd` must be in the root directory of the Rails app at the time the daemon is launched (at least in development)
 
-root = File.expand_path(File.join(File.dirname(__FILE__), '../..'))
+root = File.expand_path(File.join(File.dirname(__FILE__), '..', '..'))
 require File.join(root, 'config', 'environment')
 
 log = File.join('.', 'stream.log')
