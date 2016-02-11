@@ -11,5 +11,6 @@ RSpec.configure do |config|
     ensure
       DatabaseCleaner.clean
     end
+    Geotweet.__elasticsearch__.create_index! force: true
   end
 end
