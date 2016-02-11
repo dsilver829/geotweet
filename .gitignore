@@ -50,3 +50,4 @@ instructions.txt
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
 
+config/database.yml
