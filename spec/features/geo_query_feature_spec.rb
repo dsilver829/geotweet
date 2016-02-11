@@ -3,10 +3,10 @@ require 'spec_helper'
 
 feature 'Geo-Query' do
   before(:each) do
-    Geotweet.create(status: "Geotweet #1", latitude: 37.78, longitude: -122.39)
-    Geotweet.create(status: "Geotweet #2", latitude: 37.78, longitude: -122.41)
-    Geotweet.create(status: "Geotweet #3", latitude: -37.78, longitude: 122.41)
-    Geotweet.create(status: "Geotweet #4", latitude: 37.77, longitude: -122.39)
+    create(:geotweet, status: "Geotweet #1", latitude: 37.78, longitude: -122.39)
+    create(:geotweet, status: "Geotweet #2", latitude: 37.78, longitude: -122.41)
+    create(:geotweet, status: "Geotweet #3", latitude: -37.78, longitude: 122.41)
+    create(:geotweet, status: "Geotweet #4", latitude: 37.77, longitude: -122.39)
     Geotweet.import
     Geotweet.__elasticsearch__.refresh_index!
   end
