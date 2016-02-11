@@ -32,6 +32,7 @@ feature 'Geo-Query' do
 
   scenario 'shows the tweets in descending chronological order', js: true do
     visit root_path
+    expect(page).to have_text geotweets[3].status, count: 1
     items = page.all('ol#geotweet-list li')
     expect(items.first.text).to include geotweets[3].status
     expect(items.last.text).to include geotweets[0].status
