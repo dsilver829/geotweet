@@ -21,9 +21,7 @@ daemon.locations(-180,-90,180,90) do |tweet|
   neighbors = geotweet.geohash_neighbors
   if(neighbors.total > Geotweet::LIMIT)
     neighbor = neighbors.to_a.last
-    neighbor = Geotweet.find(neighbor.id)
     neighbor.__elasticsearch__.delete_document
     ActiveRecord::Base.logger.info(tweet.full_text)
-    Geotweet.destroy(neighbor.id)
   end
 end
