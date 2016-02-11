@@ -43,7 +43,7 @@ instructions.txt
 # Daemon files
 *.pid
 .output
-.log
+*.log
 
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
