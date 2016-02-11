@@ -24,7 +24,7 @@ module GeotweetsHelper
   def months_diff(diff)
     months = diff / (30 * 24 * 60 * 60)
     if months > 0
-      "#{months}m"
+      "#{months}mo"
     end
   end
 
@@ -45,7 +45,7 @@ module GeotweetsHelper
   def minutes_diff(diff)
     minutes = diff / 60
     if minutes > 0
-      "#{minutes}m"
+      "#{minutes}min"
     end
   end
 

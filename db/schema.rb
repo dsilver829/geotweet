@@ -11,12 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160210005116) do
+ActiveRecord::Schema.define(version: 20160211032239) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "geotweets", force: :cascade do |t|
+  create_table "geotweets", id: :bigserial, force: :cascade do |t|
     t.text     "status"
     t.float    "latitude"
     t.float    "longitude"
