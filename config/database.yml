@@ -42,7 +42,7 @@ development:
 test:
   adapter: postgresql
   encoding: unicode
-  database: 
+  database:
   host: localhost
   pool: 5
   username:
@@ -55,3 +55,5 @@ production:
   pool: 5
   username: <%= ENV['PRODUCTION_DATABASE_USERNAME'] %>
   password: <%= ENV['PRODUCTION_DATABASE_PASSWORD'] %>
+  host: <%= ENV['PRODUCTION_DATABASE_HOST'] %>
+  port: <%= ENV['PRODUCTION_DATABASE_PORT'] %>
