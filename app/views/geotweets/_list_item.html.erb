@@ -4,7 +4,7 @@
     <div class="geotweet-content-row">
       <%= link_to geotweet.user_name, "http://twitter.com/#{geotweet.user_screen_name}", target: "blank" %>
       <span class="screenname">@<%= geotweet.user_screen_name %></span>
-      <span class="geotweet-time"><%#= time_diff(geotweet) %></span>
+      <span class="geotweet-time"><%= time_diff(geotweet) %></span>
     </div>
     <div class="geotweet-content-row"><%= geotweet.status %></div>
   </div>

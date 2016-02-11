@@ -8,9 +8,10 @@ module GeotweetsHelper
   end
 
   def time_diff(geotweet)
-    diff = Time.now - Time.new(geotweet.created_at)
+    creation = geotweet.created_at.to_time
+    diff = Time.now - creation
     diff = (diff / 1000).to_i
-    date_str(geotweet.created_at, diff) || diff_str(diff) || "now"
+    date_str(creation, diff) || diff_str(diff) || "Now"
   end
 
   private
