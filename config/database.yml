@@ -44,11 +44,11 @@ development:
 test:
   adapter: postgresql
   encoding: unicode
-  database: #<%= ENV['TEST_DATABASE_NAME'] %>
+  database: geotweet_test #<%= ENV['TEST_DATABASE_NAME'] %>
   host: localhost
   pool: 5
-  username: #<%= ENV['TEST_DATABASE_USERNAME'] %>
-  password: #<%= ENV['TEST_DATABASE_PASSWORD'] %>
+  username: dsilver #<%= ENV['TEST_DATABASE_USERNAME'] %>
+  password: dsilver #<%= ENV['TEST_DATABASE_PASSWORD'] %>
 
 production:
   adapter: postgresql

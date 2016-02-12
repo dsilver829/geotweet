@@ -17,15 +17,9 @@
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configurationclear
 
-# Use Capybara-Webkit for JavaScript integration testing
-require 'capybara-webkit'
-require 'capybara/rspec'
-Capybara.javascript_driver = :webkit
-Capybara::Webkit.configure do |config|
-  config.allow_url("*.googleapis.com")
-  config.allow_url("*.gstatic.com")
-  config.allow_url("*.google.com")
-end
+
+require 'support/factory_girl_helper'
+require 'support/capybara_webkit_helper'
 
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate
