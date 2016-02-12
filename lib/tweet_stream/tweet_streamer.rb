@@ -1,6 +1,6 @@
 # `RAILS_ENV=production ruby ./tweet_streamer.rb start`
-# In production, this must be run from the lib/tweet_stream directory, due to permissions issues.
 # In development, this must be run from the RAILS_ROOT directory, due to issues with Spring.
+# In production, the Elastic Beanstalk pre- and post-deployment scripts (root/.ebextensions/) handle launching this daemon
 
 root = File.expand_path(File.join(File.dirname(__FILE__), '..', '..'))
 require File.join(root, 'config', 'environment')
