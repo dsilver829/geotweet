@@ -39,6 +39,7 @@ instructions.txt
 .idea/*
 
 .env
+config/database.yml
 
 # Daemon files
 *.pid
