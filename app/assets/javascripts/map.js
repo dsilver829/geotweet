@@ -5,7 +5,7 @@ window.markers = {};
 
 function initAutocomplete() {
     var map = new google.maps.Map(document.getElementById('map'), {
-        center: {lat: 0, lng: 0 },
+        center: {lat: parseFloat($('#map').data('latitude')), lng: parseFloat($('#map').data('longitude'))},
         zoom: 9,
         mapTypeId: google.maps.MapTypeId.ROADMAP,
         minZoom: 2
