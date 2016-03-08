@@ -37,7 +37,7 @@ The webapp uses a combination of jQuery, CSS, and Bootstrap to implement highlig
 ## Test-Driven Development
 I developed this Rails app using [Test-Driven Development](https://en.wikipedia.org/wiki/Test-driven_development) with [RSpec](http://rspec.info/). I wrote both model and integration (feature) specs, using the ["Red, Green, Refactor"](https://www.google.com/search?client=ubuntu&channel=fs&q=red+green+refactor&ie=utf-8&oe=utf-8) pattern.
 
-Capybara webkit is the driver for headless JavaScript testing. 
+capybara-webkit is the driver for headless JavaScript testing. 
 
 ## Deployment
 AWS hosts the webapp on a variety of services available as part of their [Free Tier](https://aws.amazon.com/free/).
