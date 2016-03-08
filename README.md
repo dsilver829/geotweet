@@ -59,7 +59,8 @@ This is the highest feasible resolution on the Free Tier. For example, geohash l
 
 ## To Do
 1. Implement access control on the AWS Elasticsearch Service instance.
-2. Develop mocks for 3rd-party services (i.e. tweetstream) so the specs have fewer dependencies.
-3. Improve the search feature to search all tweets (not just the ones on the map right now), and intelligently moves the map to the tweets.
-4. Investigate avenues for accelerating the stream of tweets (e.g. obtain elevated access and use the 'count' parameter on the Twitter API to backfill on the fly).
-5. Implement a background queueing system (the docs suggest Resque or Sidekiq) for handling insertions and deletions.
+2. Organize the JavaScript as classes.
+3. Add a default profile image.
+4. Develop mocks for 3rd-party services (i.e. tweetstream) so the specs have fewer dependencies.
+5. Investigate avenues for accelerating the stream of tweets (e.g. obtain elevated access and use the 'count' parameter on the Twitter API to backfill on the fly).
+6. Implement a background queueing system (the docs suggest Resque plus Sidekiq) for handling insertions and deletions.
