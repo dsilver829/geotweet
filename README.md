@@ -42,14 +42,14 @@ capybara-webkit is the driver for headless JavaScript testing.
 ## Deployment
 AWS hosts the webapp on a variety of services available as part of their [Free Tier](https://aws.amazon.com/free/).
 
-I used [AWS Elastic Beanstalk](https://aws.amazon.com/elasticbeanstalk/) to create, configure, and deploy to the production environment. Elastic Beanstalk manages an AWS Elastic Compute Cloud([EC2](https://aws.amazon.com/ec2/)) instance of an [Ubuntu](http://www.ubuntu.com/) server, which hosts the Rails app.
+I used [AWS Elastic Beanstalk](https://aws.amazon.com/elasticbeanstalk/) to create, configure, and deploy to the production environment. Elastic Beanstalk manages an AWS Elastic Compute Cloud ([EC2](https://aws.amazon.com/ec2/)) instance of an [Ubuntu](http://www.ubuntu.com/) server, which hosts the Rails app.
 
-The webapp uses a Postgres database hosted by AWS Relational Database Service ([RDS](https://aws.amazon.com/rds/)).
+The webapp connects to a Postgres database hosted by AWS Relational Database Service ([RDS](https://aws.amazon.com/rds/)).
 
 [AWS Elasticsearch Service](https://aws.amazon.com/elasticsearch-service/) provides the search instance and associated functions.
 
 ## Limits
-The app uses geohash to divide the world into 156.5km x 156.5km grid cells ([geohash length 3](https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-bucket-geohashgrid-aggregation.html)). For each grid cell, the app stores up to 250 tweets at a time, and deletes older tweets to make room for newer tweets.
+The app uses geohashing to divide the world into 156.5km x 156.5km grid cells ([geohash length 3](https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-bucket-geohashgrid-aggregation.html)). For each grid cell, the app stores up to 250 tweets at a time, and deletes older tweets to make room for newer tweets.
 
 At maximum utilization, I estimate this configuration will require ~1 GB of storage, which fits comfortably within the [AWS Free Tier](https://aws.amazon.com/free/):
 
