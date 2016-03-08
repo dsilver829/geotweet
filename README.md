@@ -4,7 +4,7 @@ Geotweet filters tweets by location and search query.
 ## Back-End Architecture
 The webapp uses [Ruby on Rails](http://rubyonrails.org/) for the web framework, and an [Elasticsearch](https://www.elastic.co/products/elasticsearch) instance for geohashing and querying.
 
-A [deamon](https://github.com/thuehlinger/daemons) uses the [tweetstream gem](https://github.com/tweetstream/tweetstream) to continously stream tweets from Twitter's [Developer API](https://dev.twitter.com/), store them to the database, and index them in the Elasticsearch instance.
+A [deamon](https://github.com/thuehlinger/daemons) uses the [tweetstream gem](https://github.com/tweetstream/tweetstream) to continously stream tweets from Twitter's [Developer API](https://dev.twitter.com/) and index them in the Elasticsearch instance.
 
 The Rails app uses the [Geocoder](http://www.rubygeocoder.com/) gem to identify the user's location.
 
