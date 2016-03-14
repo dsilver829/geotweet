@@ -10,11 +10,12 @@ var Map = function() {
 
     new GeosearchForm(this);
 
-    var callback = true;
+    google.maps.event.addListenerOnce(this.gmap, 'idle', function() {
+        this.updateGeotweets(true);
+    }.bind(this));
     google.maps.event.addListener(this.gmap, 'bounds_changed', function() {
         this.clearMarkers();
-        this.updateGeotweets(callback);
-        callback = false;
+        this.updateGeotweets(false);
         $('#geotweet-list').empty();
     }.bind(this));
 };
