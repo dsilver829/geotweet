@@ -2,8 +2,10 @@ var GeosearchForm = function(map) {
     var input = $('#pac-input')[0];
     var searchBox = new google.maps.places.SearchBox(input);
     map.gmap.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+    this.listen(searchBox);
+};
 
-    // Listen for a geographic search
+GeosearchForm.prototype.listen = function (searchBox) {
     searchBox.addListener('places_changed', function() {
         var places = searchBox.getPlaces();
 
@@ -11,7 +13,6 @@ var GeosearchForm = function(map) {
             return;
         }
 
-        // For each place, get the icon, name and location.
         var bounds = new google.maps.LatLngBounds();
         var place = places.shift();
 
@@ -22,5 +23,5 @@ var GeosearchForm = function(map) {
             bounds.extend(place.geometry.location);
         }
         map.gmap.fitBounds(bounds);
-    }.bind(this));
+    });
 };

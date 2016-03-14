@@ -8,7 +8,6 @@ var Map = function() {
 
     this.markers = {};
 
-    // Create the search box and link it to the UI element.
     new GeosearchForm(this);
 
     var callback = true;
