@@ -54,21 +54,21 @@ var Map = function() {
 
     var callback = true;
     google.maps.event.addListener(this.map, 'bounds_changed', function() {
-        clearOverlays();
+        this.clearOverlays();
         this.updateGeotweets(callback);
         callback = false;
         $('#geotweet-list').empty();
     }.bind(this));
 };
 
-function clearOverlays() {
+Map.prototype.clearOverlays = function() {
     Object.keys(window.markers).forEach(function(key,index) {
         // key: the name of the object key
         // index: the ordinal position of the key within the object
         window.markers[key].setMap(null);
         delete window.markers[key];
     });
-}
+};
 
 Map.prototype.updateGeotweets = function(callback) {
     var bounds = window.map.getBounds();
@@ -83,8 +83,8 @@ Map.prototype.updateGeotweets = function(callback) {
 
     if(callback === true) {
         setTimeout( function() {
-            updateGeotweets(true);
-        }, 1000 );
+            this.updateGeotweets(true);
+        }.bind(this), 1000 );
     }
 };
 
