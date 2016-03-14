@@ -10,9 +10,11 @@ var Map = function() {
 
     new GeosearchForm(this);
 
-    this.callback();
-
     this.listenBoundsChanged();
+
+    google.maps.event.addListenerOnce(this.gmap, 'idle', function() {
+        this.callback();
+    }.bind(this));
 };
 
 Map.prototype.clearMarkers = function() {
@@ -34,18 +36,13 @@ Map.prototype.updateGeotweets = function(callback) {
         data: { lat0: SW.lat(), lon0: SW.lng(), lat1: NE.lat(), lon1: NE.lng(), limit: 250 - $('#geotweet-list').children().length, query: $('#hidden-query-input').val() },
         dataType: 'script'
     });
-
-    if(callback === true) {
-        setTimeout( function() {
-            this.updateGeotweets(true);
-        }.bind(this), 1000 );
-    }
 };
 
 Map.prototype.callback = function() {
-    google.maps.event.addListenerOnce(this.gmap, 'idle', function() {
+    setTimeout( function() {
         this.updateGeotweets(true);
-    }.bind(this));
+        this.callback();
+    }.bind(this), 1000 );
 };
 
 Map.prototype.listenBoundsChanged = function() {
