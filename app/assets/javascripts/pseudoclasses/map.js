@@ -10,14 +10,9 @@ var Map = function() {
 
     new GeosearchForm(this);
 
-    google.maps.event.addListenerOnce(this.gmap, 'idle', function() {
-        this.updateGeotweets(true);
-    }.bind(this));
-    google.maps.event.addListener(this.gmap, 'bounds_changed', function() {
-        this.clearMarkers();
-        this.updateGeotweets(false);
-        $('#geotweet-list').empty();
-    }.bind(this));
+    this.callback();
+
+    this.listenBoundsChanged();
 };
 
 Map.prototype.clearMarkers = function() {
@@ -46,3 +41,17 @@ Map.prototype.updateGeotweets = function(callback) {
         }.bind(this), 1000 );
     }
 };
+
+Map.prototype.callback = function() {
+    google.maps.event.addListenerOnce(this.gmap, 'idle', function() {
+        this.updateGeotweets(true);
+    }.bind(this));
+};
+
+Map.prototype.listenBoundsChanged = function() {
+    google.maps.event.addListener(this.gmap, 'bounds_changed', function() {
+        this.clearMarkers();
+        this.updateGeotweets(false);
+        $('#geotweet-list').empty();
+    }.bind(this));
+}
