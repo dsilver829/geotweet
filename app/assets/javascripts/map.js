@@ -1,5 +1,3 @@
-Map = {}
-
 window.map;
 window.markers = {};
 
@@ -66,7 +64,7 @@ function clearOverlays() {
     });
 }
 
-Map.updateGeotweets = function(callback) {
+updateGeotweets = function(callback) {
     var bounds = window.map.getBounds();
     var SW = bounds.getSouthWest();
     var NE = bounds.getNorthEast();
@@ -79,7 +77,7 @@ Map.updateGeotweets = function(callback) {
 
     if(callback === true) {
         setTimeout( function() {
-            Map.updateGeotweets(true);
+            updateGeotweets(true);
         }, 1000 );
     }
 }
@@ -90,7 +88,7 @@ $(document).ready(function() {
     var callback = true;
     google.maps.event.addListener(map, 'bounds_changed', function() {
         clearOverlays();
-        Map.updateGeotweets(callback);
+        updateGeotweets(callback);
         callback = false;
         $('#geotweet-list').empty();
     });
