@@ -18,8 +18,8 @@ var Map = function() {
 
     // Bias the SearchBox results towards current map's viewport.
     this.map.addListener('bounds_changed', function() {
-        searchBox.setBounds(map.getBounds());
-    });
+        searchBox.setBounds(this.map.getBounds());
+    }.bind(this));
 
     var markers = [];
     // [START region_getplaces]
@@ -49,7 +49,7 @@ var Map = function() {
                 bounds.extend(place.geometry.location);
             }
         this.map.fitBounds(bounds);
-    });
+    }.bind(this));
     // [END region_getplaces]
 
     var callback = true;
@@ -87,7 +87,3 @@ Map.prototype.updateGeotweets = function(callback) {
         }.bind(this), 1000 );
     }
 };
-
-$(document).ready(function() {
-    var map = new Map();
-});

@@ -1,10 +1,12 @@
 $(document).ready(function() {
+    var map = new Map();
+
     $( "#query-submit" ).click(function( event ) {
         event.preventDefault();
-        clearOverlays();
+        map.clearOverlays();
         var query = $('#query-input').val();
         $('#hidden-query-input').val(query);
-        Map.updateGeotweets(false);
+        map.updateGeotweets(false);
         $('#geotweet-list').empty();
     });
 
