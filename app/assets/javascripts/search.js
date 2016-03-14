@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    var map = new Map();
+    map = new Map();
 
     $( "#query-submit" ).click(function( event ) {
         event.preventDefault();

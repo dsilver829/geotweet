@@ -1,4 +1,3 @@
-window.map;
 window.markers = {};
 
 var Map = function() {
@@ -8,8 +7,6 @@ var Map = function() {
         mapTypeId: google.maps.MapTypeId.ROADMAP,
         minZoom: 2
     });
-
-    window.map = this.map;
 
     // Create the search box and link it to the UI element.
     var input = document.getElementById('pac-input');
@@ -71,7 +68,7 @@ Map.prototype.clearOverlays = function() {
 };
 
 Map.prototype.updateGeotweets = function(callback) {
-    var bounds = window.map.getBounds();
+    var bounds = this.map.getBounds();
     var SW = bounds.getSouthWest();
     var NE = bounds.getNorthEast();
     $.ajax({

@@ -24,7 +24,7 @@ if(total > 0) {
 
     var marker = new google.maps.Marker({
       icon: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png',
-      map: window.map,
+      map: map.map,
       position: latLng,
       title: "<%= escape_javascript geotweet.status %>"
     });
