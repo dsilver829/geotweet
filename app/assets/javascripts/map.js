@@ -1,5 +1,3 @@
-window.markers = {};
-
 var Map = function() {
     this.map = new google.maps.Map(document.getElementById('map'), {
         center: {lat: $('#map').data('latitude'), lng: $('#map').data('longitude')},
@@ -7,6 +5,8 @@ var Map = function() {
         mapTypeId: google.maps.MapTypeId.ROADMAP,
         minZoom: 2
     });
+
+    this.markers = {};
 
     // Create the search box and link it to the UI element.
     var input = document.getElementById('pac-input');
@@ -51,20 +51,20 @@ var Map = function() {
 
     var callback = true;
     google.maps.event.addListener(this.map, 'bounds_changed', function() {
-        this.clearOverlays();
+        this.clearMarkers();
         this.updateGeotweets(callback);
         callback = false;
         $('#geotweet-list').empty();
     }.bind(this));
 };
 
-Map.prototype.clearOverlays = function() {
-    Object.keys(window.markers).forEach(function(key,index) {
+Map.prototype.clearMarkers = function() {
+    Object.keys(this.markers).forEach(function(key,index) {
         // key: the name of the object key
         // index: the ordinal position of the key within the object
-        window.markers[key].setMap(null);
-        delete window.markers[key];
-    });
+        this.markers[key].setMap(null);
+        delete this.markers[key];
+    }.bind(this));
 };
 
 Map.prototype.updateGeotweets = function(callback) {

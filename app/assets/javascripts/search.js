@@ -3,7 +3,7 @@ $(document).ready(function() {
 
     $( "#query-submit" ).click(function( event ) {
         event.preventDefault();
-        map.clearOverlays();
+        map.clearMarkers();
         var query = $('#query-input').val();
         $('#hidden-query-input').val(query);
         map.updateGeotweets(false);

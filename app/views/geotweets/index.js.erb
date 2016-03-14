@@ -8,8 +8,8 @@ var total = <%= @geotweets.results.total %>;
 if(total > 0) {
   while($('#geotweet-list').children().length >= <%= Geotweet::LIMIT %> && newItem()) {
     var item = $('.list-group-item').last();
-    window.markers[item.attr('id')].setMap(null);
-    delete window.markers[item.attr('id')];
+    map.markers[item.attr('id')].setMap(null);
+    delete map.markers[item.attr('id')];
     item.remove();
   }
 }
@@ -28,7 +28,7 @@ if(total > 0) {
       position: latLng,
       title: "<%= escape_javascript geotweet.status %>"
     });
-    window.markers["<%= geotweet.id %>"] = marker;
+    map.markers["<%= geotweet.id %>"] = marker;
 
     marker.addListener('click', function() {
       $('html, body').animate({
@@ -37,27 +37,27 @@ if(total > 0) {
     });
 
     marker.addListener('mouseover', function() {
-      var marker = window.markers["<%= geotweet.id %>"];
+      var marker = map.markers["<%= geotweet.id %>"];
       $('li#<%= geotweet.id %>').addClass('active');
       marker.setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png');
     });
 
     marker.addListener('mouseout', function() {
-      var marker = window.markers["<%= geotweet.id %>"];
+      var marker = map.markers["<%= geotweet.id %>"];
       $('li#<%= geotweet.id %>').removeClass('active');
       marker.setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png');
     });
 
     $('li#<%= geotweet.id %>').mouseover(function () {
       $(this).addClass('active');
-      var marker = window.markers["<%= geotweet.id %>"];
+      var marker = map.markers["<%= geotweet.id %>"];
       marker.setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png');
       marker.setZIndex(google.maps.Marker.MAX_ZINDEX + 1);
     });
 
     $('li#<%= geotweet.id %>').mouseout(function () {
       $(this).removeClass('active');
-      var marker = window.markers["<%= geotweet.id %>"];
+      var marker = map.markers["<%= geotweet.id %>"];
       marker.setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png');
       marker.setZIndex(0);
     });
