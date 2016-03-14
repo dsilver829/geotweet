@@ -2,22 +2,22 @@ window.map;
 window.markers = {};
 
 var Map = function() {
-    var map = new google.maps.Map(document.getElementById('map'), {
+    this.map = new google.maps.Map(document.getElementById('map'), {
         center: {lat: $('#map').data('latitude'), lng: $('#map').data('longitude')},
         zoom: 9,
         mapTypeId: google.maps.MapTypeId.ROADMAP,
         minZoom: 2
     });
 
-    window.map = map;
+    window.map = this.map;
 
     // Create the search box and link it to the UI element.
     var input = document.getElementById('pac-input');
     var searchBox = new google.maps.places.SearchBox(input);
-    map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+    this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
     // Bias the SearchBox results towards current map's viewport.
-    map.addListener('bounds_changed', function() {
+    this.map.addListener('bounds_changed', function() {
         searchBox.setBounds(map.getBounds());
     });
 
@@ -48,9 +48,17 @@ var Map = function() {
             } else {
                 bounds.extend(place.geometry.location);
             }
-        map.fitBounds(bounds);
+        this.map.fitBounds(bounds);
     });
     // [END region_getplaces]
+
+    var callback = true;
+    google.maps.event.addListener(this.map, 'bounds_changed', function() {
+        clearOverlays();
+        updateGeotweets(callback);
+        callback = false;
+        $('#geotweet-list').empty();
+    });
 };
 
 function clearOverlays() {
@@ -82,12 +90,4 @@ updateGeotweets = function(callback) {
 
 $(document).ready(function() {
     var map = new Map();
-
-    var callback = true;
-    google.maps.event.addListener(window.map, 'bounds_changed', function() {
-        clearOverlays();
-        updateGeotweets(callback);
-        callback = false;
-        $('#geotweet-list').empty();
-    });
 });
