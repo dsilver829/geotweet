@@ -1,5 +1,5 @@
 var Map = function() {
-    this.map = new google.maps.Map(document.getElementById('map'), {
+    this.map = new google.maps.Map($('#map')[0], {
         center: {lat: $('#map').data('latitude'), lng: $('#map').data('longitude')},
         zoom: 9,
         mapTypeId: google.maps.MapTypeId.ROADMAP,
@@ -9,7 +9,7 @@ var Map = function() {
     this.markers = {};
 
     // Create the search box and link it to the UI element.
-    var input = document.getElementById('pac-input');
+    var input = $('#pac-input')[0];
     var searchBox = new google.maps.places.SearchBox(input);
     this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
