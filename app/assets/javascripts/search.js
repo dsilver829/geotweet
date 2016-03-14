@@ -1,5 +1,4 @@
-$(document).ready(function() {
-
+var SearchForm = function() {
     $( "#query-submit" ).click(function( event ) {
         event.preventDefault();
         map.clearMarkers();
@@ -17,4 +16,4 @@ $(document).ready(function() {
             return true;
         }
     });
-});
+};

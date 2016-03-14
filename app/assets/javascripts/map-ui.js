@@ -12,5 +12,6 @@ var scrollListen = function() {
 
 $(document).ready(function() {
     map = new Map();
+    var searchForm = new SearchForm();
     scrollListen();
 });
