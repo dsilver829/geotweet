@@ -1,5 +1,5 @@
 var Map = function() {
-    this.map = new google.maps.Map($('#map')[0], {
+    this.gmap = new google.maps.Map($('#map')[0], {
         center: {lat: $('#map').data('latitude'), lng: $('#map').data('longitude')},
         zoom: 9,
         mapTypeId: google.maps.MapTypeId.ROADMAP,
@@ -11,7 +11,7 @@ var Map = function() {
     // Create the search box and link it to the UI element.
     var input = $('#pac-input')[0];
     var searchBox = new google.maps.places.SearchBox(input);
-    this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+    this.gmap.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
     // Listen for a geographic search
     searchBox.addListener('places_changed', function() {
@@ -31,11 +31,11 @@ var Map = function() {
             } else {
                 bounds.extend(place.geometry.location);
             }
-        this.map.fitBounds(bounds);
+        this.gmap.fitBounds(bounds);
     }.bind(this));
 
     var callback = true;
-    google.maps.event.addListener(this.map, 'bounds_changed', function() {
+    google.maps.event.addListener(this.gmap, 'bounds_changed', function() {
         this.clearMarkers();
         this.updateGeotweets(callback);
         callback = false;
@@ -53,7 +53,7 @@ Map.prototype.clearMarkers = function() {
 };
 
 Map.prototype.updateGeotweets = function(callback) {
-    var bounds = this.map.getBounds();
+    var bounds = this.gmap.getBounds();
     var SW = bounds.getSouthWest();
     var NE = bounds.getNorthEast();
     $.ajax({
