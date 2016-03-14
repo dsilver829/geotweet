@@ -1,7 +1,7 @@
 window.map;
 window.markers = {};
 
-function initAutocomplete() {
+var Map = function() {
     var map = new google.maps.Map(document.getElementById('map'), {
         center: {lat: $('#map').data('latitude'), lng: $('#map').data('longitude')},
         zoom: 9,
@@ -51,9 +51,7 @@ function initAutocomplete() {
         map.fitBounds(bounds);
     });
     // [END region_getplaces]
-
-    return map;
-}
+};
 
 function clearOverlays() {
     Object.keys(window.markers).forEach(function(key,index) {
@@ -83,10 +81,10 @@ updateGeotweets = function(callback) {
 }
 
 $(document).ready(function() {
-    var map = initAutocomplete();
+    var map = new Map();
 
     var callback = true;
-    google.maps.event.addListener(map, 'bounds_changed', function() {
+    google.maps.event.addListener(window.map, 'bounds_changed', function() {
         clearOverlays();
         updateGeotweets(callback);
         callback = false;
