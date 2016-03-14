@@ -11,7 +11,9 @@ var scrollListen = function() {
 };
 
 $(document).ready(function() {
-    map = new Map();
-    var searchForm = new SearchForm();
-    scrollListen();
+    if($('.geotweets-index').length > 0) {
+        map = new Map();
+        new SearchForm();
+        scrollListen();
+    }
 });
