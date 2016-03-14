@@ -55,10 +55,10 @@ var Map = function() {
     var callback = true;
     google.maps.event.addListener(this.map, 'bounds_changed', function() {
         clearOverlays();
-        updateGeotweets(callback);
+        this.updateGeotweets(callback);
         callback = false;
         $('#geotweet-list').empty();
-    });
+    }.bind(this));
 };
 
 function clearOverlays() {
@@ -70,7 +70,7 @@ function clearOverlays() {
     });
 }
 
-updateGeotweets = function(callback) {
+Map.prototype.updateGeotweets = function(callback) {
     var bounds = window.map.getBounds();
     var SW = bounds.getSouthWest();
     var NE = bounds.getNorthEast();
@@ -86,7 +86,7 @@ updateGeotweets = function(callback) {
             updateGeotweets(true);
         }, 1000 );
     }
-}
+};
 
 $(document).ready(function() {
     var map = new Map();
