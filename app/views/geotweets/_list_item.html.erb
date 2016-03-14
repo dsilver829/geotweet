@@ -1,5 +1,5 @@
 <li id="<%= geotweet.id %>" class="list-group-item">
-  <div class="geotweet-photo"><%= image_tag geotweet.user_profile_image_url %></div>
+  <div class="geotweet-photo"><%= image_tag geotweet.user_profile_image_url, alt: 'avatar' %></div>
   <div class="geotweet-content">
     <div class="geotweet-content-row">
       <%= link_to geotweet.user_name, "http://twitter.com/#{geotweet.user_screen_name}", target: "blank" %>
