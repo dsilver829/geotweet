@@ -21,7 +21,7 @@ Map.prototype.clearMarkers = function() {
     Object.keys(this.markers).forEach(function(key,index) {
         // key: the name of the object key
         // index: the ordinal position of the key within the object
-        this.markers[key].setMap(null);
+        this.markers[key].gmarker.setMap(null);
         delete this.markers[key];
     }.bind(this));
 };
