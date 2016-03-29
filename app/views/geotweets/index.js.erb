@@ -8,7 +8,7 @@ var total = <%= @geotweets.results.total %>;
 if(total > 0) {
   while($('#geotweet-list').children().length >= <%= Geotweet::LIMIT %> && newItem()) {
     var item = $('.list-group-item').last();
-    map.markers[item.attr('id')].setMap(null);
+    map.markers[item.attr('id')].gmarker.setMap(null);
     delete map.markers[item.attr('id')];
     item.remove();
   }
@@ -18,48 +18,12 @@ if(total > 0) {
   if ($("#<%= geotweet.id %>").length == 0 && $('#geotweet-list').children().length < 250) {
     $('ol#geotweet-list').prepend("<%= escape_javascript render partial: 'list_item', locals: { 'geotweet': geotweet } %>");
 
+    var id = "<%= geotweet.id %>";
     var latitude = parseFloat(<%= geotweet.latitude %>);
     var longitude = parseFloat(<%= geotweet.longitude %>);
     var latLng = new google.maps.LatLng({lat: latitude, lng: longitude});
 
-    var marker = new google.maps.Marker({
-      icon: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png',
-      map: map.gmap,
-      position: latLng,
-      title: "<%= escape_javascript geotweet.status %>"
-    });
-    map.markers["<%= geotweet.id %>"] = marker;
-
-    marker.addListener('click', function() {
-      $('html, body').animate({
-        scrollTop: $('li#<%= geotweet.id %>').offset().top
-      }, 500);
-    });
-
-    marker.addListener('mouseover', function() {
-      var marker = map.markers["<%= geotweet.id %>"];
-      $('li#<%= geotweet.id %>').addClass('active');
-      marker.setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png');
-    });
-
-    marker.addListener('mouseout', function() {
-      var marker = map.markers["<%= geotweet.id %>"];
-      $('li#<%= geotweet.id %>').removeClass('active');
-      marker.setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png');
-    });
-
-    $('li#<%= geotweet.id %>').mouseover(function () {
-      $(this).addClass('active');
-      var marker = map.markers["<%= geotweet.id %>"];
-      marker.setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png');
-      marker.setZIndex(google.maps.Marker.MAX_ZINDEX + 1);
-    });
-
-    $('li#<%= geotweet.id %>').mouseout(function () {
-      $(this).removeClass('active');
-      var marker = map.markers["<%= geotweet.id %>"];
-      marker.setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png');
-      marker.setZIndex(0);
-    });
+    var marker = new Marker(id, latLng, "<%= escape_javascript geotweet.status %>");
+    map.markers[id] = marker;
   }
 <% end %>
